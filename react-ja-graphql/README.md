@@ -125,3 +125,6 @@ mutation {
   }
 }
 ```
+
+### Tehtävät 8.12
+npm install react-select

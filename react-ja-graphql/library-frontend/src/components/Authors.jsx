@@ -1,10 +1,13 @@
 import { useQuery } from '@apollo/client'
+import { Link, useNavigate } from 'react-router-dom';
+import Select from 'react-select';
 import {ALL_AUTHORS} from "../queries"
 import Author from "./Author";
 
 const Authors = () => {
 
   const result = useQuery(ALL_AUTHORS)
+  const navigate = useNavigate()
 
   if (result.loading)  {
     return <div>Loading authors...</div>
@@ -12,9 +15,19 @@ const Authors = () => {
 
   // console.log('Authors', result.data.allAuthors)
 
+  const authorOptions = result.data.allAuthors.map(author => ({
+    value: author.name,
+    label: author.name
+  }))
+
+  const handleAuthorChange = (selectedOption) => {
+    navigate(`/authors/${selectedOption.value}/edit`, { replace: true })
+  }
+
   return (
     <div>
       <h2>authors</h2>
+      <Select options={authorOptions} onChange={handleAuthorChange} />
       <table>
         <tbody>
           <tr>
