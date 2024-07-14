@@ -1,5 +1,6 @@
 import { useQuery } from '@apollo/client'
 import {ALL_AUTHORS} from "../queries"
+import Author from "./Author";
 
 const Authors = () => {
 
@@ -9,7 +10,7 @@ const Authors = () => {
     return <div>Loading authors...</div>
   }
 
-  console.log('Authors', result.data.allAuthors)
+  // console.log('Authors', result.data.allAuthors)
 
   return (
     <div>
@@ -22,11 +23,7 @@ const Authors = () => {
             <th>books</th>
           </tr>
           {result.data.allAuthors.map((a) => (
-            <tr key={a.name}>
-              <td>{a.name}</td>
-              <td>{a.born}</td>
-              <td>{a.bookCount}</td>
-            </tr>
+            <Author key={a.name} author={a} />
           ))}
         </tbody>
       </table>

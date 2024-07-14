@@ -4,6 +4,7 @@ import Menu from "./components/Menu";
 import Notify from "./components/Notify";
 import Books from "./components/Books";
 import NewBook from "./components/NewBook";
+import EditBirthYear from "./components/EditBirthYear";
 import { Routes, Route } from 'react-router-dom'
 
 const App = () => {
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/" element={<Authors />} />
         <Route path="/books" element={<Books />} />
         <Route path="/books/create" element={<NewBook notify={notify} />} />
+        <Route path="/authors/:name/edit" element={<EditBirthYear notify={notify} />} />
       </Routes>
     </div>
   );
